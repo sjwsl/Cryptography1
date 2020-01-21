@@ -1,5 +1,7 @@
 # Cryptography
 
+This is my note of ***Cryptography 1*** by ***Dan Boneh***
+
 ## Overview
 
 ---
@@ -43,5 +45,33 @@
 
 ---
 
-* Symmetric Ciphers
-  * Both the encrypter and decrypter use the same key
+### **Substitution Cipher**
+
+* Use frequency of English letters and pairs of letters to easily break it
+
+### **Vigener Cipher**
+
+* The key is a word
+* Just break it as substitution cipher
+ 
+### **Roter Machines**
+
+* Early example: the Hebern machine (single rotor)
+* Most famous: the Enigma (3-5 rotors)
+  * Designed to defend frequency attack (statistic attack)
+  * keys = $26^4$ = $2^{18}$
+  * Still can't defend the ciphertext only attack
+
+### **Data Encryption Standard**
+
+* DES: #keys = $2^{56}$ , block size = 64 bits
+* Today: AES(2001), Salsa20(2008) (and many others)
+
+## Randomized algorithm
+
+---
+
+* Deterministic algorithm: $y \leftarrow A(m)$
+  * output is a deterministic value
+* Randomized algorithm: $y \leftarrow A(m;r)$ where $r \stackrel{R}{\leftarrow} \{0,1\}^n$
+  * output is a random variable $y \stackrel{R}{\leftarrow} A(m)$
