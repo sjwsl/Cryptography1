@@ -82,28 +82,27 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 **_Thm:_** Y a rand. var. on $\{0,1\}^n$, X an indep. **uniform** var. on $\{0,1\}^n$, Then $Z = Y \bigoplus X$ is a a **uniform** var. on $\{0,1\}^n$ s
 
 **_Proof:_** Just consider n = 1
-| Y | Pr. |
-| - | - |
-| 0 | $p_0$ |
-| 1 | $p_1$ |
 
-| X   | Pr.           |
-| --- | ------------- |
-| 0   | $\frac{1}{2}$ |
-| 1   | $\frac{1}{2}$ |
+|  Y  |  Pr.  |
+| :-: | :---: |
+|  0  | $p_0$ |
+|  1  | $p_1$ |
 
-| X   | Y   | Pr.             |
-| --- | --- | --------------- |
-| 0   | 0   | $\frac{p_0}{2}$ |
-| 0   | 1   | $\frac{p_1}{2}$ |
-| 1   | 0   | $\frac{p_0}{2}$ |
-| 1   | 1   | $\frac{p_1}{2}$ |
+|  X  |      Pr.      |
+| :-: | :-----------: |
+|  0  | $\frac{1}{2}$ |
+|  1  | $\frac{1}{2}$ |
+
+|  X  |  Y  |       Pr.       |
+| :-: | :-: | :-------------: |
+|  0  |  0  | $\frac{p_0}{2}$ |
+|  0  |  1  | $\frac{p_1}{2}$ |
+|  1  |  0  | $\frac{p_0}{2}$ |
+|  1  |  1  | $\frac{p_1}{2}$ |
 
 $$
 \begin{aligned}
-
 P\{Z=0\} &= P\{\ (x,y)=(0,0) \cup (x,y)=(1,1)\ \} \\&= p_0/2+p_1/2 \\&=1/2
-
 \end{aligned}
 $$
 
@@ -121,9 +120,9 @@ $$
 
 ### The One Time Pad
 
-First example of a **secure** cipher
+- First example of a **secure** cipher
 
-key = ( random bit string as long the message )
+- key = ( random bit string as long the message )
 
 $$
 \begin{aligned}
@@ -132,9 +131,14 @@ E(k,m) &= k \bigoplus m
 \end{aligned}
 $$
 
-## Information Theoretic Security
+- Very fast enc/dec
+- but long keys as long as PT
 
-- **_Def:_** A cipher $(E,D)$ over $(K,M,C)$ has ***perfect secrecy*** if
+### Information Theoretic Security
+
+- Shannon 1949
+
+- **_Def:_** A cipher $(E,D)$ over $(K,M,C)$ has **_perfect secrecy_** if
 
 $$
 \forall m_0,m_1 \in M\ (|m_0|=|m_1|),\forall c \in C
@@ -146,5 +150,39 @@ $$
 
 - **No CT only attack**
 
-- ***Lemma:*** OTP has ***perfect secrecy***
-  - ***Proof:*** $\forall m\in M,c\in C$, There is exactly one key $(m\bigoplus c)$ maps $m$ to $c$ 
+- **_Lemma:_** OTP has **_perfect secrecy_**
+
+  - **_Proof:_** $\forall m\in M,c\in C$, There is exactly one key $(m\bigoplus c)$ maps $m$ to $c$
+
+- **_Thm:_** perfect secrecy $\Rightarrow |K| \ge |M|$
+- Hard to use in practice!
+
+### Pseudorandom Generators
+
+- **_Stream Ciphers:_** making OTP practical
+  - Idea: replace **random** key by "pseudorandom" key
+  - Goal: decrease the length of key
+- Stream ciphers **cannot** have perfect secrecy
+  - Need a different definition of security
+  - Security will depend on specific PRG
+- PRG **MUST** be unpredictable
+- We say that $G:K\rightarrow \{0,1\}^n$ is **predictable** if:
+
+$$
+\exist\ alg.\ A, \exist\ 0 \le i \le n-1
+$$
+
+$$
+P\{A(G(k))|_{1,\cdots,i}=G(k)|_{i+1}\}>1/2+\varepsilon
+$$
+
+- **_Def:_** PRG is **unpredictable** if it is not predictable  
+  $\forall i$, no **efficient** alg. can predict $bit_{i+1}$ for **non-negligible** $\varepsilon$
+
+- Negligible
+  - In practice: $\varepsilon$ is a scalar
+    - non-neg: $\varepsilon\ge 1/2^{30}$ (likely to happen over 1 GB of data)
+    - negligible: $\varepsilon\le 1/2^{80}$ (won't happen over life of key)
+  - In theory: $\varepsilon$ is a function $\mathbb{Z}^{\ge 0} \rightarrow \mathbb{R}^{\ge 0}$
+    - non-neg: $\exist d:\varepsilon(\lambda)>=1/\lambda^d$ inf. often
+    - negligible: $\forall d,\lambda \ge \lambda_d: \varepsilon(\lambda)<1/\lambda^d$
