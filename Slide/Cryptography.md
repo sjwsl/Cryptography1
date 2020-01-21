@@ -1,3 +1,5 @@
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+
 # Cryptography
 
 This is my note of **_Cryptography 1_** by **_Dan Boneh_**
