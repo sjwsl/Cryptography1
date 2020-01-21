@@ -8,6 +8,9 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 
 ### **Crypto core**
 
+---
+
+
 - Secret ket establishment
 
 - Secure communication
@@ -35,7 +38,9 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 - Zero knowledge
   - one party (the prover) can prove to another party (the verifier) that they know a value x, **without conveying any information** apart from the fact that they know the value x
 
-### **Three steps in cryptography**
+### Three steps in cryptography
+
+---
 
 1. Precisely specify threat model
 
@@ -46,18 +51,20 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 
 3. Prove that breaking construction under threat mode will solve an underlying hard problem
 
-### **History**
+### History
 
-#### **Substitution Cipher**
+---
+
+#### Substitution Cipher
 
 - Use frequency of English letters and pairs of letters to easily break it
 
-#### **Vigener Cipher**
+#### Vigener Cipher
 
 - The key is a word
 - Just break it as substitution cipher
 
-#### **Roter Machines**
+#### Roter Machines
 
 - Early example: the Hebern machine (single rotor)
 - Most famous: the Enigma (3-5 rotors)
@@ -65,19 +72,23 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
   - keys = $26^4$ = $2^{18}$
   - Still can't defend the ciphertext only attack
 
-#### **Data Encryption Standard**
+#### Data Encryption Standard
 
 - DES: #keys = $2^{56}$ , block size = 64 bits
 - Today: AES(2001), Salsa20(2008) (and many others)
 
-#### Randomized algorithm
+### Randomized algorithm
+
+---
 
 - Deterministic algorithm: $y \leftarrow A(m)$
   - output is a deterministic value
 - Randomized algorithm: $y \leftarrow A(m;r)$ where $r \stackrel{R}{\leftarrow} \{0,1\}^n$
   - output is a random variable $y \stackrel{R}{\leftarrow} A(m)$
 
-#### An important property of XOR
+### An important property of XOR
+
+---
 
 **_Thm:_** Y a rand. var. on $\{0,1\}^n$, X an indep. **uniform** var. on $\{0,1\}^n$, Then $Z = Y \bigoplus X$ is a a **uniform** var. on $\{0,1\}^n$ s
 
@@ -107,15 +118,20 @@ P\{Z=0\} &= P\{\ (x,y)=(0,0) \cup (x,y)=(1,1)\ \} \\&= p_0/2+p_1/2 \\&=1/2
 \end{aligned}
 $$
 
-## The birthday paradox
+### The birthday paradox
 
 ---
 
 Let $r_1,\cdots,r_n \in U$ be indep. identically distributed random vars.
 
-***Thm:*** when $n= 1.2 \times |U|^{1/2}$ then
+**_Thm:_** when $n= 1.2 \times |U|^{1/2}$ then
+
 $$
 P\{\exist\ i \neq j: r_i = r_j \} \geq 1/2
 $$
 
-## Steam
+## Stream cipher
+
+---
+
+---
