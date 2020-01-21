@@ -134,11 +134,17 @@ $$
 
 ## Information Theoretic Security
 
-- **_Def:_** A cipher $(E,D)$ over $(K,M,C)$ has **perfect secrecy** if
+- **_Def:_** A cipher $(E,D)$ over $(K,M,C)$ has ***perfect secrecy*** if
 
 $$
-\begin{aligned}
 \forall m_0,m_1 \in M\ (|m_0|=|m_1|),\forall c \in C
-\\P\{E(k,m_0)=c\}=P
-\end{aligned}
 $$
+
+$$
+P\{E(k,m_0)=c\}=P\{E(k,m_1)=c\}
+$$
+
+- **No CT only attack**
+
+- ***Lemma:*** OTP has ***perfect secrecy***
+  - ***Proof:*** $\forall m\in M,c\in C$, There is exactly one key $(m\bigoplus c)$ maps $m$ to $c$ 
