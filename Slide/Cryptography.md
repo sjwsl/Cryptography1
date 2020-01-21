@@ -1,7 +1,5 @@
----
-export_on_save:
- html: true
----
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 # Cryptography
 
 This is my note of **_Cryptography 1_** by **_Dan Boneh_**
