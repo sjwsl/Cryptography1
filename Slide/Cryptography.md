@@ -4,12 +4,7 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 
 ## Overview
 
----
-
-### **Crypto core**
-
----
-
+### Crypto core
 
 - Secret ket establishment
 
@@ -40,8 +35,6 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 
 ### Three steps in cryptography
 
----
-
 1. Precisely specify threat model
 
    - What an attacker can do
@@ -52,8 +45,6 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 3. Prove that breaking construction under threat mode will solve an underlying hard problem
 
 ### History
-
----
 
 #### Substitution Cipher
 
@@ -79,16 +70,12 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 
 ### Randomized algorithm
 
----
-
 - Deterministic algorithm: $y \leftarrow A(m)$
   - output is a deterministic value
 - Randomized algorithm: $y \leftarrow A(m;r)$ where $r \stackrel{R}{\leftarrow} \{0,1\}^n$
   - output is a random variable $y \stackrel{R}{\leftarrow} A(m)$
 
 ### An important property of XOR
-
----
 
 **_Thm:_** Y a rand. var. on $\{0,1\}^n$, X an indep. **uniform** var. on $\{0,1\}^n$, Then $Z = Y \bigoplus X$ is a a **uniform** var. on $\{0,1\}^n$ s
 
@@ -120,8 +107,6 @@ $$
 
 ### The birthday paradox
 
----
-
 Let $r_1,\cdots,r_n \in U$ be indep. identically distributed random vars.
 
 **_Thm:_** when $n= 1.2 \times |U|^{1/2}$ then
@@ -131,7 +116,5 @@ P\{\exist\ i \neq j: r_i = r_j \} \geq 1/2
 $$
 
 ## Stream cipher
-
----
 
 ---
