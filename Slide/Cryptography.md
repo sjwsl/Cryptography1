@@ -12,7 +12,7 @@
   * confidentially
   * integrity
   
-* Digital signaturez
+* Digital signature
   
 * Anonymous communication
   
@@ -21,17 +21,17 @@
   * How to prevent double spending?
 
 * Secure multi-party computation
-  * “Thm:”   anything that can done with trusted authority can also be done withouttrustedauthority
+  * “Thm:”   anything that can done with trusted authority can also be done without trusted authority
 
 * Privately outsourcing computation
   * Get search result from Google while Google doesn't know what you search for
 
-* Zero knoledge
+* Zero knowledge
   * one party (the prover) can prove to another party (the verifier) that they know a value x, **without conveying any information** apart from the fact that they know the value x
 
 ### **Three steps in cryptography**
 
-1. Precesely specify threat model
+1. Precisely specify threat model
     * What an attacker can do
     * What an attacker's goal is
 
