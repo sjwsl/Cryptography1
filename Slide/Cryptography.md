@@ -2,6 +2,8 @@
 
 This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 
+[TOC]
+
 ## Overview
 
 ### Crypto core
@@ -80,7 +82,7 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 **_Thm:_** Y a rand. var. on $\{0,1\}^n$, X an indep. **uniform** var. on $\{0,1\}^n$, Then $Z = Y \bigoplus X$ is a a **uniform** var. on $\{0,1\}^n$ s
 
 **_Proof:_** Just consider n = 1
-| Y | Pr. |  
+| Y | Pr. |
 | - | - |
 | 0 | $p_0$ |
 | 1 | $p_1$ |
@@ -117,4 +119,26 @@ $$
 
 ## Stream cipher
 
----
+### The One Time Pad
+
+First example of a **secure** cipher
+
+key = ( random bit string as long the message )
+
+$$
+\begin{aligned}
+E(k,m) &= k \bigoplus m
+\\D(k,c) &= k \bigoplus c
+\end{aligned}
+$$
+
+## Information Theoretic Security
+
+- **_Def:_** A cipher $(E,D)$ over $(K,M,C)$ has **perfect secrecy** if
+
+$$
+\begin{aligned}
+\forall m_0,m_1 \in M\ (|m_0|=|m_1|),\forall c \in C
+\\P\{E(k,m_0)=c\}=P
+\end{aligned}
+$$
