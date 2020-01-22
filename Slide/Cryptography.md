@@ -165,6 +165,16 @@ $$
 - Stream ciphers **cannot** have perfect secrecy
   - Need a different definition of security
   - Security will depend on specific PRG
+- **WEAK** PRG: glibc random():
+
+$$
+r[i]\leftarrow(r[i-3]+r[i-31])\%2^{32}
+$$
+
+$$
+return\ r[i]>>1
+$$
+
 - PRG **MUST** be unpredictable
 - We say that $G:K\rightarrow \{0,1\}^n$ is **predictable** if:
 
@@ -180,9 +190,51 @@ $$
   $\forall i$, no **efficient** alg. can predict $bit_{i+1}$ for **non-negligible** $\varepsilon$
 
 - Negligible
+
   - In practice: $\varepsilon$ is a scalar
     - non-neg: $\varepsilon\ge 1/2^{30}$ (likely to happen over 1 GB of data)
     - negligible: $\varepsilon\le 1/2^{80}$ (won't happen over life of key)
   - In theory: $\varepsilon$ is a function $\mathbb{Z}^{\ge 0} \rightarrow \mathbb{R}^{\ge 0}$
     - non-neg: $\exist d:\varepsilon(\lambda)>=1/\lambda^d$ inf. often
     - negligible: $\forall d,\lambda \ge \lambda_d: \varepsilon(\lambda)<1/\lambda^d$
+
+### Attacks on OTP and stream ciphers
+
+#### Attack 1: two time pad is insecure
+
+Never use stream cipher key more than once
+
+$$
+c_1\leftarrow m_1 \bigoplus PRG(k)
+$$
+
+$$
+c_2\leftarrow m_2 \bigoplus PRG(k)
+$$
+
+Then Adv. does:
+
+$$
+c_1 \bigoplus c_2 \rightarrow m_1 \bigoplus m_2
+$$
+
+Enough redundancy in English and ASCII encoding that:
+
+$$
+m_1 \bigoplus m_2 \rightarrow m_1,m_2
+$$
+
+- 802.11b WEP
+
+$$
+c=m \bigoplus PRG(IV||k)
+$$
+
+1. IV increases by one every frame, but lengh of IV is only 24 bits. After $2^{24}\approx$ 16M frames it repeats.
+
+1. keys are related(only 24 of 1048 bits are different), And PRG used in WEP(RC4) is not secure when you use related keys.
+
+A better construction
+  Also use PRG(k) to generate new keys so that each frame has a pseudorandom key.
+
+-
