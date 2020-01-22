@@ -233,8 +233,41 @@ $$
 1. IV increases by one every frame, but lengh of IV is only 24 bits. After $2^{24}\approx$ 16M frames it repeats.
 
 1. keys are related(only 24 of 1048 bits are different), And PRG used in WEP(RC4) is not secure when you use related keys.
+   **A better construction**
+   Also use PRG(k) to generate new keys so that each frame has a pseudorandom key.
 
-A better construction
-  Also use PRG(k) to generate new keys so that each frame has a pseudorandom key.
+- Disk encryption
+  When the file changes, it's easy to tell where the change occurred instantly. That leaks information that attackers shouldn't actually know. Essentially it's another example of two time pad.
+  **Typically do not use a stream cipher in disk encryption**
 
--
+#### Attack 2: no integrity
+
+OTP is malleable. Modifications to CT are undetected and have **predictable** impact on PT.
+
+$$
+D(E(m,k)\bigoplus p,k)=m\bigoplus p
+$$
+
+Attackers can choose $p$ to modify PT.
+
+### Real-world stream ciphers
+
+#### RC4
+
+Software cipher
+
+$$
+k(128\ bits)\rightarrow k'(2048\ bits) \looparrowright 1\ byte\ per\ round
+$$
+
+- used in HTTPS and WEP
+- Weaknesses:
+  - Bias in initial output: $P\{2^{nd}byte=0\}=2/256>1/256$
+  - $P\{(0,0)\}=1/256^2+1/256^3>1/256^2$
+  - Related key attacks
+
+#### CSS
+
+Hardware cipher **(badly broken)**
+
+Linear feedback shift register (LFSR)
