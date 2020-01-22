@@ -252,7 +252,7 @@ Attackers can choose $p$ to modify PT.
 
 ### Real-world stream ciphers
 
-#### RC4
+#### [RC4](https://en.wikipedia.org/wiki/RC4)
 
 Software cipher
 
@@ -266,8 +266,8 @@ $$
   - $P\{(0,0)\}=1/256^2+1/256^3>1/256^2$
   - Related key attacks
 
-#### CSS
+#### [CSS](https://en.wikipedia.org/wiki/Content_Scramble_System)
 
 Hardware cipher **(badly broken)**
 
-Linear feedback shift register (LFSR)
+[Linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
