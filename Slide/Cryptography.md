@@ -106,7 +106,7 @@ P\{Z=0\} &= P\{\ (x,y)=(0,0) \cup (x,y)=(1,1)\ \} \\&= p_0/2+p_1/2 \\&=1/2
 \end{aligned}
 $$
 
-### The birthday paradox
+### [The birthday paradox](https://en.wikipedia.org/wiki/Birthday_problem)
 
 Let $r_1,\cdots,r_n \in U$ be indep. identically distributed random vars.
 
@@ -118,7 +118,7 @@ $$
 
 ## Stream cipher
 
-### The One Time Pad
+### [The One Time Pad](https://en.wikipedia.org/wiki/One-time_pad)
 
 - First example of a **secure** cipher
 
@@ -134,7 +134,7 @@ $$
 - Very fast enc/dec
 - but long keys as long as PT
 
-### Information Theoretic Security
+### [Information Theoretic Security](https://en.wikipedia.org/wiki/Information-theoretic_security)
 
 - Shannon 1949
 
