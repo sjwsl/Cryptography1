@@ -1,6 +1,6 @@
 # Cryptography
 
-This is my note of **_Cryptography 1_** by **_Dan Boneh_**
+This is my note of [_Cryptography 1_](https://www.coursera.org/learn/crypto) by **_Dan Boneh_**
 
 [TOC]
 
@@ -8,7 +8,7 @@ This is my note of **_Cryptography 1_** by **_Dan Boneh_**
 
 ### Crypto core
 
-- Secret ket establishment
+- Secret key establishment
 
 - Secure communication
 
@@ -157,7 +157,7 @@ $$
 - **_Thm:_** perfect secrecy $\Rightarrow |K| \ge |M|$
 - Hard to use in practice!
 
-### Pseudorandom Generators
+### [Pseudorandom Generators](https://en.wikipedia.org/wiki/Pseudorandom_generator)
 
 - **_Stream Ciphers:_** making OTP practical
   - Idea: replace **random** key by "pseudorandom" key
@@ -230,7 +230,7 @@ $$
 c=m \bigoplus PRG(IV||k)
 $$
 
-1. IV increases by one every frame, but lengh of IV is only 24 bits. After $2^{24}\approx$ 16M frames it repeats.
+1. $IV$ increases by one every frame, but length of $IV$ is only 24 bits. After $2^{24}\approx$ 16M frames it repeats.
 
 1. keys are related(only 24 of 1048 bits are different), And PRG used in WEP(RC4) is not secure when you use related keys.
    **A better construction**
@@ -252,7 +252,7 @@ Attackers can choose $p$ to modify PT.
 
 ### Real-world stream ciphers
 
-#### [RC4](https://en.wikipedia.org/wiki/RC4)
+#### [RC4](https://en.wikipedia.org/wiki/RCv4)
 
 Software cipher
 
@@ -271,5 +271,3 @@ $$
 Hardware cipher **(badly broken)**
 
 [Linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
-
-  
