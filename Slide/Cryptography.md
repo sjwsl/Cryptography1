@@ -274,4 +274,16 @@ Using [Linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Line
 
 #### [eStream](https://en.wikipedia.org/wiki/ESTREAM)
 
-a new kind of PRG: $\{0,1\}^s\times R \rightarrow \{0,1\}^n$
+a new kind of PRG: $\{0,1\}^s\times Nonce \rightarrow \{0,1\}^n$
+
+$Nonce$: a non-repeating value for a given key.
+
+$$
+E(k,m;r)=m\bigoplus PRG(k;r)
+$$
+
+The pair (k,r) is never used more than once.
+
+$Nonce$ is designed to reuse the key more than once.
+
+A famous and successful example: [Salsa 20](https://en.wikipedia.org/wiki/Salsa20)
