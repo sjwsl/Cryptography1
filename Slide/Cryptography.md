@@ -32,7 +32,7 @@ This is my note of [_Cryptography 1_](https://www.coursera.org/learn/crypto) by 
 
   - Get search result from Google while Google doesn't know what you search for
 
-- Zero knowledge
+- [Zero knowledge](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
   - one party (the prover) can prove to another party (the verifier) that they know a value x, **without conveying any information** apart from the fact that they know the value x
 
 ### Three steps in cryptography
@@ -65,7 +65,7 @@ This is my note of [_Cryptography 1_](https://www.coursera.org/learn/crypto) by 
   - keys = $26^4$ = $2^{18}$
   - Still can't defend the ciphertext only attack
 
-#### Data Encryption Standard
+#### [Data Encryption Standard](https://en.wikipedia.org/wiki/Data_Encryption_Standard)
 
 - DES: #keys = $2^{56}$ , block size = 64 bits
 - Today: AES(2001), Salsa20(2008) (and many others)
