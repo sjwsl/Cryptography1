@@ -273,3 +273,5 @@ Hardware cipher **(badly broken)**
 Using [Linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
 
 #### [eStream](https://en.wikipedia.org/wiki/ESTREAM)
+
+a new kind of PRG: $\{0,1\}^s\times R \rightarrow \{0,1\}^n$
