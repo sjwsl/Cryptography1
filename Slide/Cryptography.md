@@ -270,4 +270,7 @@ $$
 
 Hardware cipher **(badly broken)**
 
-[Linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
+Using [Linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
+
+#### [eStream](https://en.wikipedia.org/wiki/ESTREAM)
+
