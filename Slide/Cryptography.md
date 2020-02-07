@@ -304,6 +304,8 @@ $$
 r\stackrel{R}{\leftarrow} R,output\ r
 $$
 
+##
+
 #### Advantage
 
 Let $G$:$K\rightarrow \{0,1\}^n$ be a $PRG$, $\{0,1\}^n\rightarrow r$ and $A$ a **statistical test** on $\{0,1\}^n$
