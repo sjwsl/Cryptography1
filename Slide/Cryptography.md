@@ -274,7 +274,7 @@ Using [Linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Line
 
 #### [eStream](https://en.wikipedia.org/wiki/ESTREAM)
 
-a new kind of PRG: $\{0,1\}^s\times Nonce \rightarrow \{0,1\}^n$
+a new kind of $PRG$: $\{0,1\}^s\times Nonce \rightarrow \{0,1\}^n$
 
 $Nonce$: a non-repeating value for a given key.
 
@@ -287,3 +287,33 @@ The pair (k,r) is never used more than once.
 $Nonce$ is designed to reuse the key more than once.
 
 A famous and successful example: [Salsa 20](https://en.wikipedia.org/wiki/Salsa20)
+
+### PRG Security Defs
+
+Let $G$:$K\rightarrow \{0,1\}^n$ be a $PRG$
+
+**_Goal:_** define what it means that
+
+$$
+k\stackrel{R}{\leftarrow} K,output\ G(k)
+$$
+
+is **indistinguishable** from
+
+$$
+r\stackrel{R}{\leftarrow} R,output\ r
+$$
+
+#### Advantage
+
+Let $G$:$K\rightarrow \{0,1\}^n$ be a $PRG$, $\{0,1\}^n\rightarrow r$ and $A$ a **statistical test** on $\{0,1\}^n$
+
+***Define:***
+
+$$
+Adv_{PRG}[A,G]=|Pr[A(G(k))=1]-Pr[A(r)]=1| \in [0,1]
+$$
+
+$Adv$ close to 1 $\Rightarrow$ A can dist. $G$ from random
+
+$Adv$ close to 0 $\Rightarrow$ A cannot dist. $G$ from random
