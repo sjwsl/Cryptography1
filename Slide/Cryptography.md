@@ -70,7 +70,7 @@ This is my note of [_Cryptography 1_](https://www.coursera.org/learn/crypto) by 
 - DES: #keys = $2^{56}$ , block size = 64 bits
 - Today: AES(2001), Salsa20(2008) (and many others)
 
-### Randomized algorithm
+### [Randomized algorithm](https://en.wikipedia.org/wiki/Randomized_algorithm)
 
 - Deterministic algorithm: $y \leftarrow A(m)$
   - output is a deterministic value
@@ -333,7 +333,7 @@ $Adv$ close to 0 $\Rightarrow$ A cannot dist. $G$ from random
 More generally, let $P_1$ and $P_2$ be two distributions over $\{0,1\}^n$  
 **_Def:_** We say that $P_1$ and $P_2$ are **computationally indistinguishable** if no **eff.** stat. tests that can distinguish $P_1$ and $P_2$ (denoted $P_1\approx_p P_2$)
 
-### Semantic Security
+### [Semantic Security](https://en.wikipedia.org/wiki/Semantic_security)
 
 Adv. $A$ gives Chal. two message $m_0$ and $m_1$, Chal. returns c=$E(k,m_0)$ or c=$E(k,m_1)$
 
