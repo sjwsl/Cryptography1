@@ -324,5 +324,13 @@ $Adv$ close to 0 $\Rightarrow$ A cannot dist. $G$ from random
 
 **_Def:_** We say that $G:K\rightarrow \{0,1\}^n$ is a **secure** $PRG$ if $\forall$ "eff" stat. tests $A$: $Adv_{PRG}[A,G]$ is **negligible**.
 
-**_Thm:_** a secure $PRG$ is unpredictable  
+**_Thm:_** a secure $PRG$ is unpredictable.  
 **_Proof:_** Just show a predictable is insecure.
+
+**_Thm:_** an unpredictable $PRG$ is secure.
+**_Proof:_** <https://en.wikipedia.org/wiki/Yao%27s_test>
+
+More generally, let $P_1$ and $P_2$ be two distributions over $\{0,1\}^n$  
+**_Def:_** We say that $P_1$ and $P_2$ are **computationally indistinguishable** if no **eff.** stat. tests that can distinguish $P_1$ and $P_2$ (denoted $P_1\approx_p P_2$)
+
+#### Semantic Security
