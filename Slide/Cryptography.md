@@ -116,7 +116,7 @@ $$
 P\{\exist\ i \neq j: r_i = r_j \} \geq 1/2
 $$
 
-## Stream cipher
+## Stream Cipher
 
 ### [The One Time Pad](https://en.wikipedia.org/wiki/One-time_pad)
 
@@ -333,4 +333,26 @@ $Adv$ close to 0 $\Rightarrow$ A cannot dist. $G$ from random
 More generally, let $P_1$ and $P_2$ be two distributions over $\{0,1\}^n$  
 **_Def:_** We say that $P_1$ and $P_2$ are **computationally indistinguishable** if no **eff.** stat. tests that can distinguish $P_1$ and $P_2$ (denoted $P_1\approx_p P_2$)
 
-#### Semantic Security
+### Semantic Security
+
+Adv. $A$ gives Chal. two message $m_0$ and $m_1$, Chal. returns c=$E(k,m_0)$ or c=$E(k,m_1)$
+
+***Def:*** $E$ is **semantically secure** if for all efficient $A$:
+
+$$
+Adv_{SS}[A,E]=|Pr[c=E(k,m_0)]-Pr[c=E(k,m_1)]|<negligible
+$$
+
+$\Rightarrow$ for all explicit $m_0,m_1\in M,k\leftarrow K:\{E(k,m_0)\}\approx_p\{E(k,m_1)\}$
+
+#### Stream ciphers are semantically secure
+
+***Thm:*** $G:K\rightarrow \{0,1\}^n$ is a secure $PRG \Rightarrow$ stream cipher $E$ derived from G is semantically secure
+
+***Proof:*** Just to prove: $\forall$ sem. sec. adversary $A$, $\exist$ a $PRG$ adversary $B s.t.
+
+$$
+Adv_{SS}[A,E]\leq 2Adv_{PRG}[B,G]
+$$
+
+## Block Cipher
