@@ -304,13 +304,15 @@ $$
 r\stackrel{R}{\leftarrow} R,output\ r
 $$
 
-##
+#### Statistical Tests
+
+**_Def_**: an alg. $A$ s.t. $A(x)$ outputs "0" or "1"
 
 #### Advantage
 
 Let $G$:$K\rightarrow \{0,1\}^n$ be a $PRG$, $\{0,1\}^n\rightarrow r$ and $A$ a **statistical test** on $\{0,1\}^n$
 
-***Define:***
+**_Def:_**
 
 $$
 Adv_{PRG}[A,G]=|Pr[A(G(k))=1]-Pr[A(r)]=1| \in [0,1]
@@ -319,3 +321,8 @@ $$
 $Adv$ close to 1 $\Rightarrow$ A can dist. $G$ from random
 
 $Adv$ close to 0 $\Rightarrow$ A cannot dist. $G$ from random
+
+**_Def:_** We say that $G:K\rightarrow \{0,1\}^n$ is a **secure** $PRG$ if $\forall$ "eff" stat. tests $A$: $Adv_{PRG}[A,G]$ is **negligible**.
+
+**_Thm:_** a secure $PRG$ is unpredictable  
+**_Proof:_** Just show a predictable is insecure.
