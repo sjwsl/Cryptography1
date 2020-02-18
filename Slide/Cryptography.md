@@ -356,3 +356,24 @@ Adv_{SS}[A,E]\leq 2Adv_{PRG}[B,G]
 $$
 
 ## Block Cipher
+
+### PRF and PRP
+
+**_Def:_** Pseudo Random Function **(PRF)** defined over $(K,X,Y)$:
+
+$$
+F:K\times X \rightarrow Y
+$$
+
+such that exists **efficient** algorithm to evaluate $F(k,x)$
+
+***Def:*** Pseudo Random Permutation **(PRP)** defined over $(K,X)$
+
+$$
+E:K\times X \rightarrow X
+$$
+
+such that:
+
+1. Exist **efficient** deterministic algotihm to evaluate $E(k,x)$
+2. The function 
