@@ -402,7 +402,7 @@ Let $F:K\times X\rightarrow Y$ be a PRF
 
 If we replace $S_U$ with the set of all **one to one** functions from $X$ to $X$, then we get **def.** of secure PRP, and actually we also get secure block cipher.
 
-### An easy application: PRF $\Rightarrow$ PRG 
+### An easy application: PRF $\Rightarrow$ PRG
 
 Let $F:K\times \{0,1\}^n\rightarrow \{0,1\}^n$ be a secure PRF.
 
@@ -421,3 +421,32 @@ It's security is easy to prove from the security of PRF.
 Given functions $f_1,\cdots,f_d:\{0,1\}^n\rightarrow\{0,1\}^n$
 
 Goal: build **invertible** function $F:\{0,1\}^{2n}\rightarrow\{0,1\}^{2n}$
+
+Feistel Network uses $f$ as round functions. For each round $i=0,1,\cdots d$
+
+1. Split the text block into two equal pieces $L_i,R_i$
+2. compute
+
+$$
+\begin{cases}
+R_i=f_i(R_{i-1})\bigoplus L_{i-1}\\
+L_i=R_{i-1}
+\end{cases}
+$$
+
+Then $L_d||R_d$ is the ciphertext.
+
+Decryption is just to replace the second step with
+
+$$
+\begin{cases}
+L_{i-1}=f_i(L_i)\bigoplus R_0i\\
+R_{i-1}=L_{i}
+\end{cases}
+$$
+
+Then $L_0||R_0$ is the plaintext.
+
+***Thm(Luby-Rackoff '85):***
+
+if $f:K\times \{0,1\}^n\rightarrow \{0,1\}^n$ is a secure PRF, Then 3-round Feistel $F:K^3\times \{0,1\}^{2n}$ is a secure PRP.
