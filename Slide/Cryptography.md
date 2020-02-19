@@ -357,7 +357,7 @@ $$
 
 ## Block Cipher
 
-### PRF and PRP
+### PRFs and PRPs
 
 **_Def:_** Pseudo Random Function **(PRF)** defined over $(K,X,Y)$:
 
@@ -367,7 +367,7 @@ $$
 
 such that exists **efficient** algorithm to evaluate $F(k,x)$
 
-***Def:*** Pseudo Random Permutation **(PRP)** defined over $(K,X)$
+**_Def:_** Pseudo Random Permutation **(PRP)** defined over $(K,X)$
 
 $$
 E:K\times X \rightarrow X
@@ -375,5 +375,29 @@ $$
 
 such that:
 
-1. Exist **efficient** deterministic algotihm to evaluate $E(k,x)$
-2. The function 
+1. Exist **efficient** algorithm to evaluate $E(k,x)$
+2. The function $E(k,\cdot)$ is one-to-one
+3. Exists **efficient** inversion algorithm $D(k,y)$
+
+Block cipher is actually a PRP
+
+#### Example PRPs(also block ciphers):
+
+AES: $K\times X\rightarrow X$ where $K=X=\{0,1\}^{128}$
+
+3DES: $K\times X\rightarrow$ where $X=\{0,1\}^{64},K=\{0,1\}^{168}$
+
+### Secure PRFs and PRPs
+
+#### Secure PRFs
+
+Let $F:K\times X\rightarrow Y$ be a PRF
+
+- $S_U$: the set of all functions from $|X|$ to $|Y|$, $|S_U|=|Y|^{|X|}$
+- $S_F=\{F(k,\cdot)\ , k\in K\} \subseteq S_U$, $|S_F|=|K|$
+
+**_Def:_** a PRF is **secure** if a random function in $S_U$ is **indistinguishable** from a random function in $S_F$
+
+### Secure PRPs
+
+If we replace $S_U$ with the set of all **one to one** functions from $X$ to $X$, then we get **def.** of secure PRP, and actually we also get secure block cipher.
