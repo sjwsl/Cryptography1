@@ -401,3 +401,23 @@ Let $F:K\times X\rightarrow Y$ be a PRF
 ### Secure PRPs
 
 If we replace $S_U$ with the set of all **one to one** functions from $X$ to $X$, then we get **def.** of secure PRP, and actually we also get secure block cipher.
+
+### An easy application: PRF $\Rightarrow$ PRG 
+
+Let $F:K\times \{0,1\}^n\rightarrow \{0,1\}^n$ be a secure PRF.
+
+Then following $G:K\rightarrow \{0,1\}^{nt}$ is a secure PRG:
+
+$$
+G(k)=F(k,0)||F(k,1)||\cdots||F(k,n-1)
+$$
+
+It's security is easy to prove from the security of PRF.
+
+### DES
+
+#### Core idea : [Feistel Network](https://en.wikipedia.org/wiki/Feistel_cipher)
+
+Given functions $f_1,\cdots,f_d:\{0,1\}^n\rightarrow\{0,1\}^n$
+
+Goal: build **invertible** function $F:\{0,1\}^{2n}\rightarrow\{0,1\}^{2n}$
