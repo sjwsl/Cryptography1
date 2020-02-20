@@ -440,7 +440,7 @@ Decryption is just to replace the second step with
 
 $$
 \begin{cases}
-L_{i-1}=f_i(L_i)\bigoplus R_0i\\
+L_{i-1}=f_i(L_i)\bigoplus R_i\\
 R_{i-1}=L_{i}
 \end{cases}
 $$
