@@ -449,6 +449,29 @@ Then $L_0||R_0$ is the plaintext.
 
 **_Thm(Luby-Rackoff '85):_** If $f:K\times \{0,1\}^n\rightarrow \{0,1\}^n$ is a secure PRF, Then 3-round Feistel $F:K^3\times \{0,1\}^{2n}$ is a secure PRP.
 
-Now we have a method to build a secure from a secure PRP from a secure PRF. Essentially we have an efficient method to construct invertible functions from normal functions.
+Now we have a method to build a secure PRP from a secure PRF. Essentially we have an efficient method to construct invertible functions from normal functions.
+
+The Feistel structure has the advantage that encryption and decryption operations are very similar, even identical in some cases, requiring only a reversal of the key schedule. Therefore, the size of the code or circuitry required to implement such a cipher is nearly halved.
 
 ### DES: 16 round Feistel Network
+
+DES is the archetypal block cipher—an algorithm that takes a fixed-length string of plaintext bits and transforms it through a series of complicated operations into another ciphertext bitstring of the same length. In the case of DES, the block size is 64 bits. Since the key has only 56 bits, DES can be broken by brute-force attack now.
+
+Since DES is based on Feistel Network, we can focus on the function $f$ used in F-Network.
+
+$f_i$ is a function $F(k_i,x)$ and $k_i$ is from the DES key $k$.
+
+The F-function, operates on half a block (32 bits) at a time and consists of four stages:
+
+1. Expansion: the 32-bit half-block is expanded to 48 bits using the expansion permutation.
+2. Key mixing: the 48-bit result is combined with $k_i$ using an XOR operation.
+3. Substitution: after mixing in the $k_i$, the block is divided into eight 6-bit pieces before processing by the S-boxes, or substitution boxes. Each of the eight S-boxes replaces its 6 input bits with 4 output bits according to a non-linear transformation, provided in the form of a lookup table.
+4. Permutation: finally, the 32 outputs from the S-boxes are rearranged according to a fixed permutation, the P-box. This is designed so that, after permutation, the bits from the output of each S-box in this round are spread across four different S-boxes in the next round.
+
+More details see: <https://en.wikipedia.org/wiki/Data_Encryption_Standard>
+
+#### The S-boxes
+
+$$
+S_i:\{0,1\}^6\rightarrow \{0,1\}^4
+$$
