@@ -484,4 +484,18 @@ Because of the 56-bit key, the naive DES can now be cracked by anyone using a ex
 
 ##### Method 1: Triple-DES
 
-- Let 
+Let $E:K\times M\rightarrow M$ be a block cipher
+
+***Def:*** $3E((k_1,k_2,k_3),m)=E(k_1,D(k_2,E(k_3,m)))$
+
+For 3DES: $|K|=2^{168}$
+
+but simple attack in time $2^{118}$
+
+##### Method 2: DESX
+
+Let $E:K\times M\rightarrow M$ be a block cipher
+
+***Def:*** $EX((k_1,k_2,k_3),m)=k_1\bigoplus E(k_2,m\bigoplus k_3)$
+
+for DESX: $|K|=2^{184}$
