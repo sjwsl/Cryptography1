@@ -496,7 +496,7 @@ but easy attack in time $2^{118}$ (still secure)
 If $k_1=k_2=k_3$, then $E(k_1,D(k_2,E(k_3,m)))=E(k_1,m)$. We can implement naive DES with circuits that implement 3DES.
 
 - Why not Doubyle-DES?
-With 112-bits key, Double-DES has easy attack in $2^{57}$ that is just 2 times slower than DES attack and no additional security is provided. I will cover this attack in detail soon.
+With 112-bits key, Double-DES has easy attack in $2^{63}$ time and is not enough to resist exhaustive search. This attack will be covered in detail soon.
 
 ##### Method 2: DESX
 
@@ -509,5 +509,9 @@ for DESX: $|K|=2^{64+56+64}=2^{184}$
 but easy attack in time $2^{64+56}=2^{120}$(still secure)
 
 Note: $k_1\bigoplus E(k_2,m)$ or $E(k_2,m\bigoplus k_1)$ does NOTHING !!
+
+#### Meet in the middle attack
+
+
 
 #### More attcks on block ciphers
