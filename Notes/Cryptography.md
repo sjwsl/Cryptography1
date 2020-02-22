@@ -345,8 +345,6 @@ $$
 
 $\Rightarrow$ for all explicit $m_0,m_1\in M,k\leftarrow K:\{E(k,m_0)\}\approx_p\{E(k,m_1)\}$
 
-#### Stream ciphers are semantically secure
-
 **_Thm:_** $G:K\rightarrow \{0,1\}^n$ is a secure $PRG \Rightarrow$ stream cipher $E$ derived from G is semantically secure
 
 **_Proof:_** Just to prove: $\forall$ sem. sec. adversary $A$, $\exist$ a $PRG$ adversary \$B s.t.
@@ -381,15 +379,11 @@ such that:
 
 Block cipher is actually a PRP
 
-#### Example PRPs(also block ciphers):
-
 AES: $K\times X\rightarrow X$ where $K=X=\{0,1\}^{128}$
 
 3DES: $K\times X\rightarrow$ where $X=\{0,1\}^{64},K=\{0,1\}^{168}$
 
 ### Secure PRFs and PRPs
-
-#### Secure PRFs
 
 Let $F:K\times X\rightarrow Y$ be a PRF
 
@@ -397,8 +391,6 @@ Let $F:K\times X\rightarrow Y$ be a PRF
 - $S_F=\{F(k,\cdot)\ , k\in K\} \subseteq S_U$, $|S_F|=|K|$
 
 **_Def:_** a PRF is **secure** if a random function in $S_U$ is **indistinguishable** from a random function in $S_F$
-
-### Secure PRPs
 
 If we replace $S_U$ with the set of all **one to one** functions from $X$ to $X$, then we get **def.** of secure PRP, and actually we also get secure block cipher.
 
@@ -414,7 +406,7 @@ $$
 
 It's security is easy to prove from the security of PRF.
 
-### DES
+### DES: 16 round Feistel Network
 
 #### Core idea : [Feistel Network](https://en.wikipedia.org/wiki/Feistel_cipher)
 
@@ -453,7 +445,7 @@ Now we have a method to build a secure PRP from a secure PRF. Essentially we hav
 
 The Feistel structure has the advantage that encryption and decryption operations are very similar, even identical in some cases, requiring only a reversal of the key schedule. Therefore, the size of the code or circuitry required to implement such a cipher is nearly halved.
 
-### DES: 16 round Feistel Network
+#### Details about DES
 
 DES is the archetypal block cipher—an algorithm that takes a fixed-length string of plaintext bits and transforms it through a series of complicated operations into another ciphertext bitstring of the same length. In the case of DES, the block size is 64 bits. Since the key has only 56 bits, DES can be broken by brute-force attack now.
 
@@ -482,4 +474,14 @@ $$
 S_i(\vec{x})\equiv A_i\cdot \vec{x}\ (mod\ 2)
 $$
 
-We say that $S_i$ is a linear function. The entire DES would be linear
+We say that $S_i$ is a linear function. Then the entire DES would be linear so that the entire encryption function is actually matrix multiplication in modulo 2. DES would be so easy to break.
+
+DONOT choose S-boxes at random.
+
+#### Strengthening DES against exhaustive search
+
+Because of the 56-bit key, the naive DES can now be cracked by anyone using a exhaustive search. As a result, many methods have emerged to strengthen DES.
+
+##### Method 1: Triple-DES
+
+- Let 
