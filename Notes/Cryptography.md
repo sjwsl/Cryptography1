@@ -463,15 +463,23 @@ $f_i$ is a function $F(k_i,x)$ and $k_i$ is from the DES key $k$.
 
 The F-function, operates on half a block (32 bits) at a time and consists of four stages:
 
-1. Expansion: the 32-bit half-block is expanded to 48 bits using the expansion permutation.
-2. Key mixing: the 48-bit result is combined with $k_i$ using an XOR operation.
-3. Substitution: after mixing in the $k_i$, the block is divided into eight 6-bit pieces before processing by the S-boxes, or substitution boxes. Each of the eight S-boxes replaces its 6 input bits with 4 output bits according to a non-linear transformation, provided in the form of a lookup table.
-4. Permutation: finally, the 32 outputs from the S-boxes are rearranged according to a fixed permutation, the P-box. This is designed so that, after permutation, the bits from the output of each S-box in this round are spread across four different S-boxes in the next round.
+1. **Expansion:** the 32-bit half-block is expanded to 48 bits using the expansion permutation.
+2. **Key mixing:** the 48-bit result is combined with $k_i$ using an XOR operation.
+3. **Substitution:** after mixing in the $k_i$, the block is divided into eight 6-bit pieces before processing by the S-boxes, or substitution boxes. Each of the eight S-boxes replaces its 6 input bits with 4 output bits according to a non-linear transformation, provided in the form of a lookup table.
+4. **Permutation:** finally, the 32 outputs from the S-boxes are rearranged according to a fixed permutation, the P-box. This is designed so that, after permutation, the bits from the output of each S-box in this round are spread across four different S-boxes in the next round.
 
-More details see: <https://en.wikipedia.org/wiki/Data_Encryption_Standard>
+**More details see:** <https://en.wikipedia.org/wiki/Data_Encryption_Standard>
 
 #### The S-boxes
 
 $$
 S_i:\{0,1\}^6\rightarrow \{0,1\}^4
 $$
+
+If S-boxes are linear or almost linear, formally
+
+$$
+S_i(\vec{x})\equiv A_i\cdot \vec{x}\ (mod\ 2)
+$$
+
+We say that $S_i$ is a linear function. The entire DES would be linear
