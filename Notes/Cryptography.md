@@ -447,7 +447,7 @@ The Feistel structure has the advantage that encryption and decryption operation
 
 #### Details about DES
 
-DES is the archetypal block cipher—an algorithm that takes a fixed-length string of plaintext bits and transforms it through a series of complicated operations into another ciphertext bitstring of the same length. In the case of DES, the block size is 64 bits. Since the key has only 56 bits, DES can be broken by brute-force attack now.
+DES is the archetypal block cipher—an algorithm that takes a fixed-length string of plaintext bits and transforms it through a series of complicated operations into another ciphertext bitstring of the same length. In the case of DES, the block size is 64 bits. The key has 64 bits but only 56 bits are effective.
 
 Since DES is based on Feistel Network, we can focus on the function $f$ used in F-Network.
 
@@ -488,9 +488,15 @@ Let $E:K\times M\rightarrow M$ be a block cipher
 
 ***Def:*** $3E((k_1,k_2,k_3),m)=E(k_1,D(k_2,E(k_3,m)))$
 
-For 3DES: $|K|=2^{168}$
+For 3DES: $|K|=2^{56*3}=2^{168}$
 
-but simple attack in time $2^{118}$
+but easy attack in time $2^{118}$ (still secure)
+
+- Why not $E(k_1,E(k_2,E(k_3,m)))$?
+If $k_1=k_2=k_3$, then $E(k_1,D(k_2,E(k_3,m)))=E(k_1,m)$. We can implement naive DES with circuits that implement 3DES.
+
+- Why not Doubyle-DES?
+With 112-bits key, Double-DES has easy attack in $2^{57}$ that is just 2 times slower than DES attack. I will cover this attack in detail soon.
 
 ##### Method 2: DESX
 
@@ -498,4 +504,10 @@ Let $E:K\times M\rightarrow M$ be a block cipher
 
 ***Def:*** $EX((k_1,k_2,k_3),m)=k_1\bigoplus E(k_2,m\bigoplus k_3)$
 
-for DESX: $|K|=2^{184}$
+for DESX: $|K|=2^{64+56+64}=2^{184}$
+
+but easy attack in time $2^{64+56}=2^{120}$(still secure)
+
+Note: $k_1\bigoplus E(k_2,m)$ or $E(k_2,m\bigoplus k_1)$ does NOTHING !!
+
+#### More attcks on block ciphers
