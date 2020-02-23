@@ -539,3 +539,9 @@ $\Rightarrow$ DONOT even try to implement crypto primitives ourselves
 #### [Linear cryptanalysis](https://en.wikipedia.org/wiki/Linear_cryptanalysis)
 
  Linear cryptanalysis is a general form of cryptanalysis based on finding affine approximations to the action of a cipher.
+
+ For DES, attack time $\approx 2^{43}$ with $2^{42}$ random in/out pairs.
+
+ #### [Differential cryptanalysis](https://en.wikipedia.org/wiki/Differential_cryptanalysis)
+
+ Differential cryptanalysis is a general form of cryptanalysis applicable primarily to block ciphers, but also to stream ciphers and cryptographic hash functions. In the broadest sense, it is the study of how differences in information input can affect the resultant difference at the output.
