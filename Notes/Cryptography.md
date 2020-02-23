@@ -490,13 +490,13 @@ Let $E:K\times M\rightarrow M$ be a block cipher
 
 For 3DES: $|K|=2^{56*3}=2^{168}$
 
-but easy attack in time $2^{118}$ (still secure)
+but easy attack in time $2^{112}$ (still secure)
 
 - Why not $E(k_1,E(k_2,E(k_3,m)))$?
 If $k_1=k_2=k_3$, then $E(k_1,D(k_2,E(k_3,m)))=E(k_1,m)$. We can implement naive DES with circuits that implement 3DES.
 
 - Why not Doubyle-DES?
-With 112-bits key, Double-DES has easy attack in $2^{63}$ time and is not enough to resist exhaustive search. This attack will be covered in detail soon.
+With 112-bits key, Double-DES has easy attack in $2^{57}$ time and is not enough to resist exhaustive search. This attack will be covered in detail soon.
 
 ##### Method 2: DESX
 
@@ -510,8 +510,32 @@ but easy attack in time $2^{64+56}=2^{120}$(still secure)
 
 Note: $k_1\bigoplus E(k_2,m)$ or $E(k_2,m\bigoplus k_1)$ does NOTHING !!
 
-#### Meet in the middle attack
+#### Meet-in-the-middle attack
 
+***Def:*** $2E((k_1,k_2),m)=E(k_1,E(k_2,m))$
 
+Goal: Find $(k_1,k_2)$ s.t. $E(k_1,E(k_2,m)=c)$
 
-#### More attcks on block ciphers
+Equivalently: $E(k_2,m)=D(k1,c)$
+
+Attack:
+
+1. build a table containing all $E(k_2,m)$ for all possible $k_2$, the size of table is $2^{56}$.
+2. For each possible c decryption result, loot it up in the table for the same. It can be implemented by binary search or hash table.
+
+The complexity of Meet-in-the-middle attack depends on the complexity of the lookup algorithm. If a hash lookup is used, it can theoretically be completed in $2^{56}+2^{56}=2^{27}$ time.
+
+In the same way, we can crack 3DES in $2^{112}$ time. That's why 3DES and 2DES are less secure than they seem. 3DES is still secure, but never use 2DES.
+
+### More attacks on block ciphers
+
+#### [Side-channel attack](https://en.wikipedia.org/wiki/Side-channel_attack)
+
+- Measure time or power to do enc/dec.
+- Computing errors in the last round expose the secret key $k$
+
+$\Rightarrow$ DONOT even try to implement crypto primitives ourselves
+
+#### [Linear cryptanalysis](https://en.wikipedia.org/wiki/Linear_cryptanalysis)
+
+ Linear cryptanalysis is a general form of cryptanalysis based on finding affine approximations to the action of a cipher.
