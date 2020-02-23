@@ -406,7 +406,7 @@ $$
 
 It's security is easy to prove from the security of PRF.
 
-### DES: 16 round Feistel Network
+### Data Encryption Standard
 
 #### Core idea : [Feistel Network](https://en.wikipedia.org/wiki/Feistel_cipher)
 
@@ -447,7 +447,7 @@ The Feistel structure has the advantage that encryption and decryption operation
 
 #### Details about DES
 
-DES is the archetypal block cipher—an algorithm that takes a fixed-length string of plaintext bits and transforms it through a series of complicated operations into another ciphertext bitstring of the same length. In the case of DES, the block size is 64 bits. The key has 64 bits but only 56 bits are effective.
+DES is a 16-round Feistel Network. The key has 64 bits but only 56 bits are effective.
 
 Since DES is based on Feistel Network, we can focus on the function $f$ used in F-Network.
 
@@ -486,23 +486,23 @@ Because of the 56-bit key, the naive DES can now be cracked by anyone using a ex
 
 Let $E:K\times M\rightarrow M$ be a block cipher
 
-***Def:*** $3E((k_1,k_2,k_3),m)=E(k_1,D(k_2,E(k_3,m)))$
+**_Def:_** $3E((k_1,k_2,k_3),m)=E(k_1,D(k_2,E(k_3,m)))$
 
 For 3DES: $|K|=2^{56*3}=2^{168}$
 
 but easy attack in time $2^{112}$ (still secure)
 
 - Why not $E(k_1,E(k_2,E(k_3,m)))$?
-If $k_1=k_2=k_3$, then $E(k_1,D(k_2,E(k_3,m)))=E(k_1,m)$. We can implement naive DES with circuits that implement 3DES.
+  If $k_1=k_2=k_3$, then $E(k_1,D(k_2,E(k_3,m)))=E(k_1,m)$. We can implement naive DES with circuits that implement 3DES.
 
 - Why not Doubyle-DES?
-With 112-bits key, Double-DES has easy attack in $2^{57}$ time and is not enough to resist exhaustive search. This attack will be covered in detail soon.
+  With 112-bits key, Double-DES has easy attack in $2^{57}$ time and is not enough to resist exhaustive search. This attack will be covered in detail soon.
 
 ##### Method 2: DESX
 
 Let $E:K\times M\rightarrow M$ be a block cipher
 
-***Def:*** $EX((k_1,k_2,k_3),m)=k_1\bigoplus E(k_2,m\bigoplus k_3)$
+**_Def:_** $EX((k_1,k_2,k_3),m)=k_1\bigoplus E(k_2,m\bigoplus k_3)$
 
 for DESX: $|K|=2^{64+56+64}=2^{184}$
 
@@ -512,7 +512,7 @@ Note: $k_1\bigoplus E(k_2,m)$ or $E(k_2,m\bigoplus k_1)$ does NOTHING !!
 
 #### Meet-in-the-middle attack
 
-***Def:*** $2E((k_1,k_2),m)=E(k_1,E(k_2,m))$
+**_Def:_** $2E((k_1,k_2),m)=E(k_1,E(k_2,m))$
 
 Goal: Find $(k_1,k_2)$ s.t. $E(k_1,E(k_2,m)=c)$
 
@@ -527,6 +527,23 @@ The complexity of Meet-in-the-middle attack depends on the complexity of the loo
 
 In the same way, we can crack 3DES in $2^{112}$ time. That's why 3DES and 2DES are less secure than they seem. 3DES is still secure, but never use 2DES.
 
+### Advanced Encryption Standard
+
+ Advanced Encryption Standard (AES) is the first (and only) publicly accessible cipher approved by the National Security Agency (NSA) for top secret information when used in an NSA approved cryptographic module.
+
+1. **KeyExpansion** — round keys are derived from the cipher key using Rijndael's key schedule. AES requires a separate 128-bit round key block for each round plus one more.
+2. **Initial round key addition:**
+   **AddRoundKey** — each byte of the state is combined with a byte of the round key using bitwise xor.
+3. **9, 11 or 13 rounds:**
+   - **SubBytes** — a non-linear substitution step where each byte is replaced with another according to a lookup table.
+   - **ShiftRows** — a transposition step where the last three rows of the state are shifted cyclically a certain number of steps.
+   - **MixColumns** — a linear mixing operation which operates on the columns of the state, combining the four bytes in each column.
+   - **AddRoundKey**
+4. **Final round** (making 10, 12 or 14 rounds in total):
+   - **SubBytes**
+   - **ShiftRows**
+   - **AddRoundKey**
+
 ### More attacks on block ciphers
 
 #### [Side-channel attack](https://en.wikipedia.org/wiki/Side-channel_attack)
@@ -538,15 +555,15 @@ $\Rightarrow$ DONOT even try to implement crypto primitives ourselves
 
 #### [Linear cryptanalysis](https://en.wikipedia.org/wiki/Linear_cryptanalysis)
 
- Linear cryptanalysis is a general form of cryptanalysis based on finding affine approximations to the action of a cipher.
+Linear cryptanalysis is a general form of cryptanalysis based on finding affine approximations to the action of a cipher.
 
- For DES, attack time $\approx 2^{43}$ with $2^{42}$ random in/out pairs.
+For DES, attack time $\approx 2^{43}$ with $2^{42}$ random in/out pairs.
 
- #### [Differential cryptanalysis](https://en.wikipedia.org/wiki/Differential_cryptanalysis)
+#### [Differential cryptanalysis](https://en.wikipedia.org/wiki/Differential_cryptanalysis)
 
- Differential cryptanalysis is a general form of cryptanalysis applicable primarily to block ciphers, but also to stream ciphers and cryptographic hash functions. In the broadest sense, it is the study of how differences in information input can affect the resultant difference at the output.
+Differential cryptanalysis is a general form of cryptanalysis applicable primarily to block ciphers, but also to stream ciphers and cryptographic hash functions. In the broadest sense, it is the study of how differences in information input can affect the resultant difference at the output.
 
- #### Quantum attack
+#### Quantum attack
 
 Generic search problem
 
