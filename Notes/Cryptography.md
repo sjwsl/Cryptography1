@@ -545,3 +545,27 @@ $\Rightarrow$ DONOT even try to implement crypto primitives ourselves
  #### [Differential cryptanalysis](https://en.wikipedia.org/wiki/Differential_cryptanalysis)
 
  Differential cryptanalysis is a general form of cryptanalysis applicable primarily to block ciphers, but also to stream ciphers and cryptographic hash functions. In the broadest sense, it is the study of how differences in information input can affect the resultant difference at the output.
+
+ #### Quantum attack
+
+Generic search problem
+
+Let $f:X\rightarrow \{0,1\}$ be a function
+
+Goal: find $x\in X$ s.t. $f(x)=1$
+
+Classical computer: best generic algorithm time = $O(|X|)$
+
+Quantum computer[Grover'96]: time = $O(|X|^{1/2})$
+
+See: <https://en.wikipedia.org/wiki/Grover%27s_algorithm>
+
+$$
+f(x)=
+\begin{cases}
+1,\ E(k,m)=c\\
+0,\ otherwise
+\end{cases}
+$$
+
+Cracking DES has now become a generic search problem that can be solved in square root time.
