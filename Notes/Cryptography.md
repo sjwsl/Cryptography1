@@ -529,7 +529,14 @@ In the same way, we can crack 3DES in $2^{112}$ time. That's why 3DES and 2DES a
 
 ### Advanced Encryption Standard
 
- Advanced Encryption Standard (AES) is the first (and only) publicly accessible cipher approved by the National Security Agency (NSA) for top secret information when used in an NSA approved cryptographic module.
+Advanced Encryption Standard (AES) is the first (and only) publicly accessible cipher approved by the National Security Agency (NSA) for top secret information when used in an NSA approved cryptographic module.
+
+AES is based on a design principle known as a [substitution–permutation network](https://en.wikipedia.org/wiki/Substitution–permutation_networ), and is efficient in both software and hardware. Unlike its predecessor DES, AES does not use a Feistel network.
+
+Key sizes: 128, 192, 256 bits.
+Block size: 128 bits
+
+**High-level description of the algorithm**
 
 1. **KeyExpansion** — round keys are derived from the cipher key using Rijndael's key schedule. AES requires a separate 128-bit round key block for each round plus one more.
 2. **Initial round key addition:**
@@ -543,6 +550,8 @@ In the same way, we can crack 3DES in $2^{112}$ time. That's why 3DES and 2DES a
    - **SubBytes**
    - **ShiftRows**
    - **AddRoundKey**
+
+More details see: <https://en.wikipedia.org/wiki/Advanced_Encryption_Standard>
 
 ### More attacks on block ciphers
 
@@ -586,3 +595,15 @@ f(x)=
 $$
 
 Cracking DES has now become a generic search problem that can be solved in square root time.
+
+### GGM PRF: PRG $\Rightarrow$ PRF
+
+$G:K\rightarrow K^2$
+
+$F(k,x\in\{0,1\})=G(k)[x]$
+
+***Thm:*** $G$ is a secure PRG $\Rightarrow$ $F$ is a secure 1-bit PRF
+
+In a similar way, we can construct a secure PRF $F:K\times \{0,1\}^n\rightarrow K$ from a secure PRG  $G:K\rightarrow K^2$. Then use Luby-­Rackoff theorem, we can get a secure PRP (block cipher).  
+
+This method is not practical because it is too slow since it has to run PRG $n$ times to generate n bits. That's why we still need DES or AES which is a heuristic PRF.
