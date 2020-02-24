@@ -679,4 +679,7 @@ Attacker's power: chosen message attack
 
 Attacker's goal: existential forgery
 
-- produce some new valid pair $(m,t)$ s.t. $V(m,t,k)=yes$
+- produce **any** new valid pair $(m,t)$ s.t. $V(m,t,k)=yes$
+- note: given (m,t) attacker cannot even produce $(m,t')$ for $t'\neq t$, although $t'$ may exist.
+
+**Def:** $I=(S,V)$ is a secure MAC if for all efficient Adv. $A$ $Adv_{MAC}[A,I]=P[V(\cdot,m,t)=yes]$ is **negligible**.
