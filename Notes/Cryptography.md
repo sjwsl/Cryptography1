@@ -602,8 +602,81 @@ $G:K\rightarrow K^2$
 
 $F(k,x\in\{0,1\})=G(k)[x]$
 
-***Thm:*** $G$ is a secure PRG $\Rightarrow$ $F$ is a secure 1-bit PRF
+**_Thm:_** $G$ is a secure PRG $\Rightarrow$ $F$ is a secure 1-bit PRF
 
-In a similar way, we can construct a secure PRF $F:K\times \{0,1\}^n\rightarrow K$ from a secure PRG  $G:K\rightarrow K^2$. Then use Luby-­Rackoff theorem, we can get a secure PRP (block cipher).  
+In a similar way, we can construct a secure PRF $F:K\times \{0,1\}^n\rightarrow K$ from a secure PRG $G:K\rightarrow K^2$. Then use Luby-­Rackoff theorem, we can get a secure PRP (block cipher).
 
 This method is not practical because it is too slow since it has to run PRG $n$ times to generate n bits. That's why we still need DES or AES which is a heuristic PRF.
+
+### PRF Switching Lemma
+
+Any secure PRP is also a secure PRF, if $|X|$ is sufficiently large.
+
+**_Lemma:_** Let E be a PRP over $(K,X)$, Then for any q-query adversary $A$:
+
+$$
+|Adv_{PRF}[A,E]-Adv_{PRP}[A,E]|<q^2/2|X|
+$$
+
+### Using block cipher
+
+#### CPA security
+
+Adversary's power: chosen-plaintext attack (CPA)
+
+- Can obtain the encryption of arbitrary messages of his choice(conservative modeling of real life)
+
+Adversary's goal: Break sematic security
+
+**_Thm:_** Any encryption that always outputs same ciphertext for message $m$ is not semantically secure under CPA.
+
+Solution 1: randomized encryption
+
+$$
+E(k,m)=[r\stackrel{R}{\leftarrow}R,output\ (r,F(k,r)\bigoplus m)]
+$$
+
+$E$ is semantically secure under CPA if $|R|$ is large enough so r never repeat.
+
+Solution 2: nonce-based encryption
+
+$$
+E(k,m)=[r=r+1,output\ (r,F(k,r)\bigoplus m)]
+$$
+
+$E$ is semantically secure under CPA if $|R|$ is large enough so r never repeat.
+
+#### Block cipher mode of operation
+
+In cryptography, a block cipher mode of operation is an algorithm that uses a block cipher to provide information security such as confidentiality or authenticity. A block cipher by itself is only suitable for the secure cryptographic transformation (encryption or decryption) of one fixed-length group of bits called a block. A mode of operation describes how to repeatedly apply a cipher's single-block operation to securely transform amounts of data larger than a block.
+
+See: <https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation>
+
+## Message Integrity
+
+Goal: **integrity**, no confidentially.
+
+### Message Authentication Codes
+
+In cryptography, a message authentication code (MAC), sometimes known as a tag, is a short piece of information used to authenticate a message—in other words, to confirm that the message came from the stated sender (its authenticity) and has not been changed.
+
+***Def:*** $T$: tag space, $K$: key space, $M$: message space. Message Authentication Codes (MAC) $I=(S,V)$ defined over $(K,M,T)$ is a pair of algorithms: 
+
+- $S(k,m)$ outputs $t\in T$
+- $V(k,m,t)$ outputs $yes$ or $no$
+
+#### Why integrity requires a secret key?
+
+[CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check) is an error-detecting code with no secret key commonly used in digital networks and storage devices to detect **accidental** changes to raw data. But in cryptography, attacker can modify message at will and easily re-compute CRC. 
+
+The truth is very simple. Without a secret key, the sender and the attacker are actually equivalent to the receiver. It is impossible to tell whether the message has been tampered with by the attacker.
+
+#### Secure MACS
+
+Attacker's power: chosen message attack
+
+- for $m_1,\cdots,m_q$ attacker is given $t_i\leftarrow S(k,m_i)$ 
+
+Attacker's goal: existential forgery
+
+- produce some new valid pair $(m,t)$ s.t. $V(m,t,k)=yes$
