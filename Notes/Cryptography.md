@@ -683,3 +683,9 @@ Attacker's goal: existential forgery
 - note: given (m,t) attacker cannot even produce $(m,t')$ for $t'\neq t$, although $t'$ may exist.
 
 **Def:** $I=(S,V)$ is a secure MAC if for all efficient Adv. $A$ $Adv_{MAC}[A,I]=P[V(\cdot,m,t)=yes]$ is **negligible**.
+
+***Thm:*** If $F:K\times X\rightarrow Y$ is a secure PRF and $1/|Y|$ is negligible, say $|Y|=2^{80}$ then $I_F$ is a secure MAC.
+
+- AES: a secure MAC for 16-byte messages.
+
+
