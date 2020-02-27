@@ -696,4 +696,3 @@ Two main constructions used in practice:
 - HMAC
 
 Both convert a small-PRF into a big-PRF.
-
