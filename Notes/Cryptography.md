@@ -686,6 +686,14 @@ Attacker's goal: existential forgery
 
 ***Thm:*** If $F:K\times X\rightarrow Y$ is a secure PRF and $1/|Y|$ is negligible, say $|Y|=2^{80}$ then $I_F$ is a secure MAC.
 
-- AES: a secure MAC for 16-byte messages.
+AES is a secure MAC for 16-byte messages.
 
+Main problem: how to convert Small-MAC into Big-MAC?
+
+Two main constructions used in practice: 
+
+- CBC-MAC
+- HMAC
+
+Both convert a small-PRF into a big-PRF.
 
