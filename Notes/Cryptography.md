@@ -708,3 +708,13 @@ Let $F:K\times X\rightarrow X$ be a PRP, Define new PRF $F_{ECBC}:K^2\times X^{\
 Let $K\times X\rightarrow K$ be a PRF, Define new PRF $F_{NMAC}:K^2\times X^{\leq L}\rightarrow K$
 
 Details see: <http://www.crypto-it.net/eng/theory/mac.html>
+
+#### ECBC-MAC and NMAC analysis
+
+***Thm:*** CBC-MAC is secure as long as $q<<|X|^{1/2}$, NMAC is secure as long as $q<<|K|^{1/2}$
+
+Actually the secure bounds are tight because there is an easy attack when we have $|Y|^{1/2}$ queries for random messages in $|X|$.
+
+1. Find two different queries $(m,t_0)$ and $(v,t_0)$ for $u\neq v$ (likely exists by The Birthday Paradox) 
+2. choose arbitrary $w$ and query $u||w$ for $t$
+3. output forgery $(v||w,t)$
