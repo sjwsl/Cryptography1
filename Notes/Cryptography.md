@@ -697,3 +697,14 @@ Two main constructions used in practice:
 
 Both convert a small-PRF into a big-PRF.
 
+#### Two simple MAC construction
+
+##### Construction 1: encrypted CBC-MAC
+
+Let $F:K\times X\rightarrow X$ be a PRP, Define new PRF $F_{ECBC}:K^2\times X^{\leq L}\rightarrow X$
+
+##### Construction 2: NMAC(nested MAC)
+
+Let $K\times X\rightarrow K$ be a PRF, Define new PRF $F_{NMAC}:K^2\times X^{\leq L}\rightarrow K$
+
+Details see: <http://www.crypto-it.net/eng/theory/mac.html>
