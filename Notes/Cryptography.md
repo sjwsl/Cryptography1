@@ -108,7 +108,7 @@ $$
 
 ### [The birthday paradox](https://en.wikipedia.org/wiki/Birthday_problem)
 
-Let $r_1,\cdots,r_n \in U$ be indep. identically distributed random vars.
+Let $r_1,...,r_n \in U$ be indep. identically distributed random vars.
 
 **_Thm:_** when $n= 1.2 \times |U|^{1/2}$ then
 
@@ -183,7 +183,7 @@ $$
 $$
 
 $$
-P\{A(G(k))|_{1,\cdots,i}=G(k)|_{i+1}\}>1/2+\varepsilon
+P\{A(G(k))|_{1,...,i}=G(k)|_{i+1}\}>1/2+\varepsilon
 $$
 
 - **_Def:_** PRG is **unpredictable** if it is not predictable  
@@ -401,7 +401,7 @@ Let $F:K\times \{0,1\}^n\rightarrow \{0,1\}^n$ be a secure PRF.
 Then following $G:K\rightarrow \{0,1\}^{nt}$ is a secure PRG:
 
 $$
-G(k)=F(k,0)||F(k,1)||\cdots||F(k,n-1)
+G(k)=F(k,0)||F(k,1)||...||F(k,n-1)
 $$
 
 It's security is easy to prove from the security of PRF.
@@ -410,11 +410,11 @@ It's security is easy to prove from the security of PRF.
 
 #### Core idea : [Feistel Network](https://en.wikipedia.org/wiki/Feistel_cipher)
 
-Given functions $f_1,\cdots,f_d:\{0,1\}^n\rightarrow\{0,1\}^n$
+Given functions $f_1,...,f_d:\{0,1\}^n\rightarrow\{0,1\}^n$
 
 Goal: build **invertible** function $F:\{0,1\}^{2n}\rightarrow\{0,1\}^{2n}$
 
-Feistel Network uses $f$ as round functions. For each round $i=0,1,\cdots d$
+Feistel Network uses $f$ as round functions. For each round $i=0,1,... d$
 
 1. Split the text block into two equal pieces $L_i,R_i$
 2. compute
@@ -675,7 +675,7 @@ The truth is very simple. Without a secret key, the sender and the attacker are 
 
 Attacker's power: chosen message attack
 
-- for $m_1,\cdots,m_q$ attacker is given $t_i\leftarrow S(k,m_i)$ 
+- for $m_1,...,m_q$ attacker is given $t_i\leftarrow S(k,m_i)$ 
 
 Attacker's goal: existential forgery
 
@@ -707,14 +707,51 @@ Let $F:K\times X\rightarrow X$ be a PRP, Define new PRF $F_{ECBC}:K^2\times X^{\
 
 Let $K\times X\rightarrow K$ be a PRF, Define new PRF $F_{NMAC}:K^2\times X^{\leq L}\rightarrow K$
 
-Details see: <http://www.crypto-it.net/eng/theory/mac.html>
-
 #### ECBC-MAC and NMAC analysis
 
 ***Thm:*** CBC-MAC is secure as long as $q<<|X|^{1/2}$, NMAC is secure as long as $q<<|K|^{1/2}$
 
-Actually the secure bounds are tight because there is an easy attack when we have $|Y|^{1/2}$ queries for random messages in $|X|$.
+Actually the secure bounds are tight because there is an easy attack when we have $|T|^{1/2}$ queries for random messages in $|X|$.
 
 1. Find two different queries $(m,t_0)$ and $(v,t_0)$ for $u\neq v$ (likely exists by The Birthday Paradox) 
 2. choose arbitrary $w$ and query $u||w$ for $t$
 3. output forgery $(v||w,t)$
+
+This means we should change the secret key after using it for about $|T|^{1/2}$ messages.
+
+#### MAC padding 
+
+What if msg. len. is not multiple of block-size?
+
+For security, padding must be invertible
+
+$$
+m_0\neq m_1 \Rightarrow pad(m_0)\neq pad(m_1)
+$$
+
+##### ISO standard
+
+ISO standard: pad with $100... 00$. Add new dummy block if needed.
+
+The disadvantage is that an extra block may be padded to massages.
+
+##### CMAC (NIST standard)
+
+Variant of CBC-MAC where key=$(k,k_1,k_2)$
+
+#### Other MACs
+
+##### PMAC 
+
+Let $F:K\times X\rightarrow X$ be a PRP, Define new PRF $F_{ECBC}:K^2\times X^{\leq L}\rightarrow X$
+
+PMAC is a parallel MAC. Padding similar to CMAC.
+
+PMAC is incremental: If $F$ in PMAC is a PRP, we can quickly update tag when one block changes.
+
+##### One-time MAC
+
+Let $q$ be a larger prime than a block (e.g. $q=2^{128}+51$)
+
+$k=(a,b)\in \{1,...,q\}^2$
+$m=(m[1],m[2],...,m[L])$
