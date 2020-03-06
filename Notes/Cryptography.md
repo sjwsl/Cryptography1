@@ -753,5 +753,9 @@ PMAC is incremental: If $F$ in PMAC is a PRP, we can quickly update tag when one
 
 Let $q$ be a larger prime than a block (e.g. $q=2^{128}+51$)
 
-$k=(a,b)\in \{1,...,q\}^2$
-$m=(m[1],m[2],...,m[L])$
+$k=(x,b)\in \{1,...,q\}^2$
+$m=(m[1],m[2],...,m[L])$ where each block is 128-bit int.
+
+$$
+S(k,m)=x^{L+1} + \sum_{i=1}^L m[i]\cdot x^i + b
+$$
